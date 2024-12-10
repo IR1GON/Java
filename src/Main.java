@@ -1,15 +1,13 @@
 public class Main {
     public static void main(String[] args) {
-        Dish soup = new Dish("Soup", 5, "Starter");
-        Dish pizza = new Dish("Pizza", 10, "Main Course");
-        Dish iceCream = new Dish("Ice Cream", 3, "Dessert");
+        Car car1 = new Car("Tesla Model S", 2022, "Tesla");
+        Car car2 = new Car("Ford Mustang", 2023, "Ford");
+        Car car3 = new Car("Toyota Corolla", 2021, "Toyota");
 
-        Restaurant.addDish(soup);
-        Restaurant.addDish(pizza);
-        Restaurant.addDish(iceCream);
+        car1.displayInfo();
+        car2.displayInfo();
+        car3.displayInfo();
 
-        Restaurant.displayMenu();
-
-        System.out.println("Total number of dishes in the menu: " + Restaurant.getTotalDishes());
+        System.out.println("Total cars produced: " + Car.getTotalCarsProduced());
     }
 }
