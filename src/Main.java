@@ -1,13 +1,21 @@
 public class Main {
     public static void main(String[] args) {
-        Car car1 = new Car("Tesla Model S", 2022, "Tesla");
-        Car car2 = new Car("Ford Mustang", 2023, "Ford");
-        Car car3 = new Car("Toyota Corolla", 2021, "Toyota");
+        Library library = new Library();
 
-        car1.displayInfo();
-        car2.displayInfo();
-        car3.displayInfo();
+        library.addBook(new FictionBook("The Hobbit", "J.R.R. Tolkien", 1937, "1111", "Fantasy"));
+        library.addBook(new FictionBook("1984", "George Orwell", 1949, "2222", "Dystopian"));
+        library.addBook(new EducationalBook("Mathematics 101", "John Doe", 2000, "3333", "Mathematics", "University"));
+        library.addBook(new EducationalBook("History of Ukraine", "Ivan Franko", 1995, "4444", "History", "School"));
 
-        System.out.println("Total cars produced: " + Car.getTotalCarsProduced());
+        library.registerReader("Alice", 1);
+        library.registerReader("Bob", 2);
+
+        library.lendBook("1111", 1);
+        library.lendBook("3333", 2);
+
+        library.returnBook("1111", 1);
+
+        System.out.println("\nBooks in the library:");
+        library.displayBooks();
     }
 }
