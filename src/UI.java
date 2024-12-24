@@ -56,4 +56,5 @@ public class UI extends JFrame {
             logic.handleButtonPress(e.getActionCommand());
         }
     }
+
 }

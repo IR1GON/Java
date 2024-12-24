@@ -107,6 +107,7 @@ public class CalculatorLogic {
         } catch (NumberFormatException e) {
             ui.updateDisplay("Error");
         }
+
     }
 
     private void resetState() {
