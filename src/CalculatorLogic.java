@@ -20,6 +20,12 @@ public class CalculatorLogic {
             performOperation(buttonText);
         } else if (buttonText.equals("=")) {
             calculateResult();
+        } else if (buttonText.equals("√")) {
+            calculateSquareRoot();
+        } else if (buttonText.equals("^2")) {
+            calculateSquare();
+        } else if (buttonText.equals("M")) {
+            saveToMemory();
         }
     }
 
@@ -66,10 +72,46 @@ public class CalculatorLogic {
         }
     }
 
+    private void calculateSquareRoot() {
+        try {
+            double displayedNumber = Double.parseDouble(ui.getDisplayText());
+            if (displayedNumber >= 0) {
+                double result = Math.sqrt(displayedNumber);
+                ui.updateDisplay(String.valueOf(result));
+            } else {
+                ui.updateDisplay("Error");
+            }
+            isNewInput = true;
+        } catch (NumberFormatException e) {
+            ui.updateDisplay("Error");
+        }
+    }
+
+    private void calculateSquare() {
+        try {
+            double displayedNumber = Double.parseDouble(ui.getDisplayText());
+            double result = displayedNumber * displayedNumber;
+            ui.updateDisplay(String.valueOf(result));
+            isNewInput = true;
+        } catch (NumberFormatException e) {
+            ui.updateDisplay("Error");
+        }
+    }
+
+    private void saveToMemory() {
+        try {
+            double displayedNumber = Double.parseDouble(ui.getDisplayText());
+            currentResult = displayedNumber;
+            ui.updateDisplay("Saved: " + displayedNumber);
+            isNewInput = true;
+        } catch (NumberFormatException e) {
+            ui.updateDisplay("Error");
+        }
+    }
+
     private void resetState() {
         currentResult = 0;
         currentOperator = "";
         isNewInput = true;
     }
 }
-

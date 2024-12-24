@@ -21,13 +21,14 @@ public class UI extends JFrame {
         frame.add(displayField, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(4, 4, 9, 9));
+        buttonPanel.setLayout(new GridLayout(5, 4, 9, 9)); // Додали ще один ряд для нових кнопок
 
         String[] buttonNames = {
                 "7", "8", "9", "/",
                 "4", "5", "6", "*",
                 "1", "2", "3", "-",
-                "0", ".", "=", "+"
+                "0", ".", "=", "+",
+                "√", "^2", "M"
         };
 
         for (String buttonName : buttonNames) {
