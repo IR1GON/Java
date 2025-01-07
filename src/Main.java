@@ -1,19 +1,33 @@
-import javax.swing.*;
-import java.awt.*;
-
 public class Main {
-
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Slider Example with Save Feature");
-            frame.setSize(400, 250);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setLayout(new BorderLayout());
+        try {
+            divideByZero();
+            accessInvalidArrayIndex();
+            triggerNullPointer();
+        } catch (ArithmeticException e) {
+            System.out.println("Помилка арифметики: " + e.getMessage());
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Помилка доступу до масиву: " + e.getMessage());
+        } catch (NullPointerException e) {
+            System.out.println("Помилка: виклик методу на null: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Інша помилка: " + e.getMessage());
+        } finally {
+            System.out.println("Програма завершила обробку помилок.");
+        }
+    }
 
-            CustomSlider customSlider = new CustomSlider();
-            frame.add(customSlider, BorderLayout.CENTER);
+    private static void divideByZero() {
+        int result = 10 / 0;
+    }
 
-            frame.setVisible(true);
-        });
+    private static void accessInvalidArrayIndex() {
+        int[] numbers = {1, 2, 3};
+        int invalidIndex = numbers[5];
+    }
+
+    private static void triggerNullPointer() {
+        String nullString = null;
+        nullString.length();
     }
 }
