@@ -10,13 +10,11 @@ public class TimerApp extends JFrame {
     private int seconds = 0;
 
     public TimerApp() {
-        // Налаштування вікна
         setTitle("Таймер");
         setSize(300, 150);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
 
-        // Ініціалізація компонентів
         timeLabel = new JLabel(formatTime(seconds));
         timeLabel.setFont(new Font("Arial", Font.BOLD, 30));
         add(timeLabel);
@@ -29,7 +27,7 @@ public class TimerApp extends JFrame {
         add(stopButton);
         add(resetButton);
 
-        // Додавання обробників подій
+
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -82,7 +80,7 @@ public class TimerApp extends JFrame {
         public void run() {
             while (running && seconds > 0) {
                 try {
-                    Thread.sleep(1000); // Затримка на 1 секунду
+                    Thread.sleep(1000);
                     seconds--;
                     SwingUtilities.invokeLater(() -> timeLabel.setText(formatTime(seconds)));
                 } catch (InterruptedException e) {
