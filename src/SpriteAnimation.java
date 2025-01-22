@@ -8,9 +8,10 @@ import java.util.List;
 public class SpriteAnimation extends JFrame {
     private int spriteX = 300;
     private int spriteY = 200;
-    private final int spriteSize = 50;
+    private int spriteSize = 50;
     private Image spriteImage;
     private final List<Rectangle> obstacles = new ArrayList<>();
+    private final AnimationPanel animationPanel;
 
     public SpriteAnimation() {
         setTitle("Sprite Animation with Obstacles");
@@ -20,7 +21,7 @@ public class SpriteAnimation extends JFrame {
 
         spriteImage = new ImageIcon("D:\\java\\untitled2\\src\\main_character.jpg").getImage();
 
-        AnimationPanel animationPanel = new AnimationPanel();
+        animationPanel = new AnimationPanel();
         animationPanel.setFocusable(true);
         animationPanel.requestFocusInWindow();
         animationPanel.addKeyListener(new KeyAdapter() {
@@ -52,6 +53,8 @@ public class SpriteAnimation extends JFrame {
         obstacles.add(new Rectangle(200, 150, 100, 100));
         obstacles.add(new Rectangle(500, 300, 150, 50));
         obstacles.add(new Rectangle(350, 400, 80, 80));
+
+        createControlWindow();
     }
 
     private boolean isColliding(int x, int y) {
@@ -62,6 +65,40 @@ public class SpriteAnimation extends JFrame {
             }
         }
         return false;
+    }
+
+    private void createControlWindow() {
+        JFrame controlWindow = new JFrame("Control Panel");
+        controlWindow.setSize(300, 200);
+        controlWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        controlWindow.setLayout(new GridLayout(3, 1));
+
+        JButton increaseSizeButton = new JButton("Increase Sprite Size");
+        JButton decreaseSizeButton = new JButton("Decrease Sprite Size");
+        JButton resetButton = new JButton("Reset Obstacles");
+
+        increaseSizeButton.addActionListener(e -> {
+            spriteSize += 10;
+            animationPanel.repaint();
+        });
+
+        decreaseSizeButton.addActionListener(e -> {
+            spriteSize = Math.max(10, spriteSize - 10);
+            animationPanel.repaint();
+        });
+
+        resetButton.addActionListener(e -> {
+            obstacles.clear();
+            obstacles.add(new Rectangle(100, 100, 100, 100));
+            obstacles.add(new Rectangle(400, 200, 120, 60));
+            animationPanel.repaint();
+        });
+
+        controlWindow.add(increaseSizeButton);
+        controlWindow.add(decreaseSizeButton);
+        controlWindow.add(resetButton);
+
+        controlWindow.setVisible(true);
     }
 
     private class AnimationPanel extends JPanel {
